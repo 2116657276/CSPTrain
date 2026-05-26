@@ -1,31 +1,46 @@
-// 食堂推出了n种菜品。现在有m个同学依次报出自己想吃的菜品名称（字符串）。
-// 请你按菜品第一次出现的顺序，输出每种被点到的菜品名称，以及它最终被点了多少次。
+/*
+双十一买书，有 n 本书，第 i 本书价格为 a_i。电商平台的包邮门槛是 x 元。你想要凑单，从这 n 本书中挑出若干本，使得总价格 >= x，并且要求总价格【尽可能小】（也就是刚好过包邮线，不要浪费钱）。
+求出满足条件的最小凑单总价格。
+输入：第一行 n, x。接下来 n 行，每行一个整数 a_i。
+输出：一个整数（最小的凑单总价）。
+*/
 #include<iostream>
-#include<map>
 #include<vector>
-#include<string>
+#include<algorithm>
+#define int long long
+
 using namespace std;
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
+signed main() {
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
+	cout.tie(nullptr);
 
-    int n,m;
-    cin>>n>>m;
-    map<string,int> counter;
-    vector<string> order;
+	int n, X;
+	if (!(cin >> n >> X)) return 0;
+	vector<int> goods(n + 1, 0);
+	int sum = 0;
 
-    for (int i = 0;i < m;i++) {
-        string dish;
-        cin>>dish;
-        if (counter.find(dish) == counter.end()) {
-            counter[dish] = 1;
-            order.push_back(dish);
-        }else {
-            counter[dish]++;
-        }
-    }
-    for (const string& o:order) {
-        cout << o << " " << counter[o] << "\n";
-    }
+	for (int i = 1; i <= n; i++) {
+		int good;
+		cin >> good;
+		sum += good;
+		goods[i] = good;
+	}
+	sort(goods.begin(), goods.end());
+
+	const int Y = sum - X;
+	if (Y <= 0) {
+		cout << sum;
+		return 0;
+	}
+	vector<int> dp(Y + 1, 0);
+	for (int i = 1; i <= n; i++) {
+		int const price = goods[i];
+		for (int j = Y; j >= price; j--) {
+			dp[j] = max(dp[j], dp[j - price] + price);
+		}
+	}
+
+	cout << sum - dp[Y];
+	return 0;
 }

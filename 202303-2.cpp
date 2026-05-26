@@ -38,7 +38,7 @@ signed main() {
     }
     int ans = R;
     while (L <= R) {
-        int limit = (L + R)/2;;
+        int limit = (L + R)/2;
         if (check(limit)) {
             ans = limit;
             R = limit -1;

@@ -1,13 +1,16 @@
 cmake_minimum_required(VERSION 3.22)
-project(CSP)
+
+project(CSPTrain)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(CSP main.cpp)
+file(GLOB_RECURSE CPP_FILES "*.cpp")
 
-add_executable(202312-1 202312-1.cpp)
-add_executable(202209-2 202209-2.cpp)
-add_executable(201912-2 201912-2.cpp)
-add_executable(202203-2 202203-2.cpp)
-add_executable(202303-2 202303-2.cpp)
-add_executable(202012-2 202012-2.cpp)
+foreach (CPP_FILE ${CPP_FILES})
+    if (NOT CPP_FILE MATCHES "CMakeFiles" AND NOT CPP_FILE MATCHES "cmake-build")
+
+        get_filename_component(TARGET_NAME ${CPP_FILE} NAME_WE)
+        add_executable(${TARGET_NAME} ${CPP_FILE})
+
+    endif ()
+endforeach ()

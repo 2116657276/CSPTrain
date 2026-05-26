@@ -1,0 +1,4 @@
+/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G Ninja -S /home/zjl_wsl/Workspace/CSPTrain -B /home/zjl_wsl/Workspace/CSPTrain/cmake-build-debug
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/zjl_wsl/Workspace/CSPTrain/cmake-build-debug
