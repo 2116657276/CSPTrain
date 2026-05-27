@@ -10,9 +10,11 @@
 #include<vector>
 #define int long long
 using namespace std;
+
 signed main() {
     ios::sync_with_stdio(false);
-    cin.tie(nullptr); cout.tie(nullptr);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
 
     int n, m;
     if (!(cin >> n >> m)) return 0;
@@ -44,12 +46,12 @@ signed main() {
 
             int best_u = 1;
             int sum1 = 0;
-            for (int i =1;i < n+1; i++) {
+            for (int i = 1; i < n + 1; i++) {
                 sum1 += w[i];
             }
             int diff = 0xFFFF;
             int sum2 = 0;
-            for (int i = 1;i < n+1; i++) {
+            for (int i = 1; i < n + 1; i++) {
                 sum2 += w[i];
                 diff = min(diff, sum2 - sum1 - (sum1 - w[i]));
                 if (diff == sum2 - sum1 - (sum1 - w[i])) {
@@ -60,10 +62,8 @@ signed main() {
             const bool is_child_or_self = (target >= best_u);
 
             if (is_child_or_self) {
-
                 for (int i = 1; i < best_u; i++) alive[i] = false;
             } else {
-
                 for (int i = best_u; i <= n; i++) alive[i] = false;
             }
 
