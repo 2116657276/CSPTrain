@@ -11,65 +11,100 @@
 #define int long long
 using namespace std;
 
+vector<int> children[55];
+int w[55];
+bool alive[55];
+
+bool is_descendant(int root, int node) {
+	if (root == node) return true;
+	for (int child: children[root]) {
+		if (is_descendant(child, node)) return true;
+	}
+	return false;
+}
+
+int get_child_weight(int u) {
+	int sum = 0;
+	if (alive[u]) {
+		sum += w[u];
+	}
+	for (int v: children[u]) {
+		get_child_weight(v);
+	}
+	return sum;
+}
+
 signed main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
+	cout.tie(nullptr);
 
-    int n, m;
-    if (!(cin >> n >> m)) return 0;
+	int n, m;
+	if (!(cin >> n >> m)) return 0;
 
-    vector<int> w(n + 1, 0);
-    for (int i = 1; i <= n; i++) {
-        cin >> w[i];
-    }
+	for (int i = 1; i <= n; i++) cin >> w[i];
 
-    for (int test = 0; test < m; test++) {
-        vector<bool> alive(n + 1, true);
+	for (int i = 2; i <= n; i++) {
+		int parent;
+		cin >> parent;
+		children[parent].push_back(i);
+	}
 
-        int target;
-        cin >> target;
+	for (int test = 0; test < m; test++) {
+		for (int i = 1; i <= n; i++) alive[i] = true;
 
-        while (true) {
-            int alive_count = 0;
-            int last_alive_node = 0;
-            for (int i = 1; i <= n; i++) {
-                if (alive[i]) {
-                    alive_count++;
-                    last_alive_node = i;
-                }
-            }
+		int target;
+		cin >> target;
 
-            if (alive_count <= 1) {
-                break;
-            }
+		while (true) {
+			int alive_count = 0;
+			int total_alive_weight = 0;
+			for (int i = 1; i <= n; i++) {
+				if (alive[i]) {
+					alive_count++;
+					total_alive_weight += w[i];
+				}
+			}
 
-            int best_u = 1;
-            int sum1 = 0;
-            for (int i = 1; i < n + 1; i++) {
-                sum1 += w[i];
-            }
-            int diff = 0xFFFF;
-            int sum2 = 0;
-            for (int i = 1; i < n + 1; i++) {
-                sum2 += w[i];
-                diff = min(diff, sum2 - sum1 - (sum1 - w[i]));
-                if (diff == sum2 - sum1 - (sum1 - w[i])) {
-                    best_u = i;
-                }
-            }
+			if (alive_count <= 1) break;
 
-            const bool is_child_or_self = (target >= best_u);
+			int min_diff = 1e18;
+			int best_u = 1;
 
-            if (is_child_or_self) {
-                for (int i = 1; i < best_u; i++) alive[i] = false;
-            } else {
-                for (int i = best_u; i <= n; i++) alive[i] = false;
-            }
+			for (int i = 1; i <= n; i++) {
+				if (alive[i]) {
+					int child_weight = get_child_weight(i);
 
-            cout << best_u << " ";
-        }
-        cout << "\n";
-    }
-    return 0;
+					int other_weight = total_alive_weight - child_weight;
+
+					int current_diff = abs(child_weight - other_weight);
+
+					if (current_diff < min_diff) {
+						min_diff = current_diff;
+						best_u = i;
+					}
+				}
+			}
+
+			bool is_in_subtree = is_descendant(best_u, target);
+
+			if (is_in_subtree) {
+				for (int i = 1; i <= n; i++) {
+					if (is_descendant(best_u, i) == false) {
+						alive[i] = false;
+					}
+				}
+			} else {
+				for (int i = 1; i <= n; i++) {
+					if (is_descendant(best_u, i) == true) {
+						alive[i] = false;
+					}
+				}
+			}
+
+			cout << best_u << " ";
+		}
+		cout << "\n";
+	}
+	return 0;
 }
