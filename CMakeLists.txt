@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.22)
 
 project(CSPTrain)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 
 file(GLOB_RECURSE CPP_FILES "*.cpp")
 
