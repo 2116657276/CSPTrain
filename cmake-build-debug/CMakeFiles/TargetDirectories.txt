@@ -8,6 +8,10 @@
 /home/zjl_wsl/Workspace/CSPTrain/cmake-build-debug/CMakeFiles/202312-1.dir
 /home/zjl_wsl/Workspace/CSPTrain/cmake-build-debug/CMakeFiles/202312-3.dir
 /home/zjl_wsl/Workspace/CSPTrain/cmake-build-debug/CMakeFiles/202406-2.dir
+/home/zjl_wsl/Workspace/CSPTrain/cmake-build-debug/CMakeFiles/202506-1.dir
+/home/zjl_wsl/Workspace/CSPTrain/cmake-build-debug/CMakeFiles/202506-2.dir
+/home/zjl_wsl/Workspace/CSPTrain/cmake-build-debug/CMakeFiles/202509-1.dir
+/home/zjl_wsl/Workspace/CSPTrain/cmake-build-debug/CMakeFiles/202509-2.dir
 /home/zjl_wsl/Workspace/CSPTrain/cmake-build-debug/CMakeFiles/202512-1.dir
 /home/zjl_wsl/Workspace/CSPTrain/cmake-build-debug/CMakeFiles/202512-2.dir
 /home/zjl_wsl/Workspace/CSPTrain/cmake-build-debug/CMakeFiles/202603-1.dir
@@ -16,5 +20,6 @@
 /home/zjl_wsl/Workspace/CSPTrain/cmake-build-debug/CMakeFiles/202603-4.dir
 /home/zjl_wsl/Workspace/CSPTrain/cmake-build-debug/CMakeFiles/NotFoundWhichExam_1.dir
 /home/zjl_wsl/Workspace/CSPTrain/cmake-build-debug/CMakeFiles/main.dir
+/home/zjl_wsl/Workspace/CSPTrain/cmake-build-debug/CMakeFiles/template.dir
 /home/zjl_wsl/Workspace/CSPTrain/cmake-build-debug/CMakeFiles/edit_cache.dir
 /home/zjl_wsl/Workspace/CSPTrain/cmake-build-debug/CMakeFiles/rebuild_cache.dir
